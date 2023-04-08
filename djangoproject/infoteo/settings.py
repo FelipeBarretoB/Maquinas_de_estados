@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "Mealy",
-    "Moore",
-    "Machines"
+    "StateMachine"
 ]
 
 MIDDLEWARE = [
