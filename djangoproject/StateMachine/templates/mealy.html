@@ -1,5 +1,54 @@
-{% extends 'layouts/base2.html' %}
+{% extends 'layouts/base1.html' %}
 {% block content%}
 <h1>mealy</h1>
+<form method="POST" id="id_form">
+    {% csrf_token %}
+    <label for="input-value">Nombre de la maquina:</label>
+    <input type="text" name="input-value" id="input-value" required>
+    <table>
+        <thead>
+          <tr>
+            <th>q</th>
+            <th>fq0</th>
+            <th>fq1</th>
+            <th>hq</th>
+          </tr>
+        </thead>
+        <tbody>
+       
+        </tbody>
+      </table>
+      <button type="button" id="add-row">Add Row</button>
+      <button type="submit">Save</button>
+</form>
+<script>
+    document.getElementById('add-row').addEventListener('click', function() {
+  const formCountInput = document.getElementById('id_form');
+  const formCount = parseInt(formCountInput.value);
+  const newFormHtml = `
+  <tr>
+  <td>
+    <p> <label for="id_form-q"></label> <input type="text" name="form-q"maxlength="200" id="id_form-q" required unique></p>
+  </td>
+  <td>
+    <p><label for="id_form-fq0"></label><input type="text" name="form-fq0" maxlength="200" id="id_form-fq0" required></p>
+  </td>
+  <td>
+    <p><label for="id_form-fq1"></label><input type="text" name="form-fq1" maxlength="200" id="id_form-fq1" required></p>
+  </td>
+  <td>
+    <p><label for="id_form-hq"></label><input type="text" name="form-hq" maxlength="200" id="id_form-hq" required></p>
+  </td>
+</tr>
+
+  `.replace(/__prefix__/g, formCount);
+  const tbody = document.querySelector('tbody');
+  const newRow = document.createElement('tr');
+  newRow.innerHTML = newFormHtml;
+  tbody.appendChild(newRow);
+  formCountInput.value = formCount + 1;
+});
+
+  </script>
 
 {% endblock %}
