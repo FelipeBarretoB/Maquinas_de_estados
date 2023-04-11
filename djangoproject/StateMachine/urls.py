@@ -3,9 +3,6 @@ from . import views
 
 urlpatterns = [
     path("", views.index),
-    path("mealy/",views.renderMealy),
-    path("moore/",views.renderMoore)
-    #path("<str:name>", views.showMealy),
-    #path("", views.showMoore),
-    #path("<str:name>", views.showMoore)
+    path("moore/",views.render_Moore),
+    path("mealy/",views.render_Mealy)
 ]

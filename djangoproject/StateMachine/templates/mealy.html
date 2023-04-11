@@ -11,11 +11,28 @@
             <th>q</th>
             <th>fq0</th>
             <th>fq1</th>
-            <th>hq</th>
+            <th>gq0</th>
+            <th>gq1</th>
           </tr>
         </thead>
         <tbody>
-       
+            <tr>
+                <td>
+                  <p> <label for="id_form-q"></label> <input type="text" name="form-q"maxlength="200" id="id_form-q" required unique></p>
+                </td>
+                <td>
+                  <p><label for="id_form-fq0"></label><input type="text" name="form-fq0" maxlength="200" id="id_form-fq0" required></p>
+                </td>
+                <td>
+                  <p><label for="id_form-fq1"></label><input type="text" name="form-fq1" maxlength="200" id="id_form-fq1" required></p>
+                </td>
+                <td>
+                    <p><label for="id_form-gq0"></label><input type="text" name="form-gq0" maxlength="200" id="id_form-gq0" required></p>
+                  </td>
+                <td>
+                  <p><label for="id_form-gq1"></label><input type="text" name="form-gq1" maxlength="200" id="id_form-gq1" required></p>
+                </td>
+              </tr>
         </tbody>
       </table>
       <button type="button" id="add-row">Add Row</button>
@@ -26,7 +43,7 @@
   const formCountInput = document.getElementById('id_form');
   const formCount = parseInt(formCountInput.value);
   const newFormHtml = `
-  <tr>
+<tr>
   <td>
     <p> <label for="id_form-q"></label> <input type="text" name="form-q"maxlength="200" id="id_form-q" required unique></p>
   </td>
@@ -34,10 +51,13 @@
     <p><label for="id_form-fq0"></label><input type="text" name="form-fq0" maxlength="200" id="id_form-fq0" required></p>
   </td>
   <td>
+    <p><label for="id_form-gq0"></label><input type="text" name="form-gq0" maxlength="200" id="id_form-gq0" required></p>
+  </td>
+  <td>
     <p><label for="id_form-fq1"></label><input type="text" name="form-fq1" maxlength="200" id="id_form-fq1" required></p>
   </td>
   <td>
-    <p><label for="id_form-hq"></label><input type="text" name="form-hq" maxlength="200" id="id_form-hq" required></p>
+    <p><label for="id_form-gq1"></label><input type="text" name="form-gq1" maxlength="200" id="id_form-gq1" required></p>
   </td>
 </tr>
 

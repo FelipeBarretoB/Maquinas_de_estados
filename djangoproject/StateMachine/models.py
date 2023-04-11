@@ -9,9 +9,18 @@ class Machine_name_Mealy(models.Model):
         ]
     def __str__(self):
         return self.name
+    
+class Machine_name_Moore(models.Model):
+    name = models.CharField(max_length=200)
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['name'], name='unique_name_Moore')
+        ]
+    def __str__(self):
+        return self.name    
 
-class Mealy(models.Model):
-    name= models.ForeignKey(Machine_name_Mealy, on_delete=models.CASCADE)
+class Moore(models.Model):
+    name= models.ForeignKey(Machine_name_Moore, on_delete=models.CASCADE)
     q = models.CharField(max_length=200)
     fq0 = models.CharField(max_length=200)
     fq1 = models.CharField(max_length=200)
@@ -20,17 +29,10 @@ class Mealy(models.Model):
     def __str__(self):
         return self.q
 
-class Machine_name_Moore(models.Model):
-    name = models.CharField(max_length=200)
-    class Meta:
-        constraints=[
-            models.UniqueConstraint(fields=['name'], name='unique_name_Moore')
-        ]
-    def __str__(self):
-        return self.name
 
-class Moore(models.Model):
-    name = models.ForeignKey(Machine_name_Moore,on_delete=models.CASCADE)
+
+class Mealy(models.Model):
+    name = models.ForeignKey(Machine_name_Mealy,on_delete=models.CASCADE)
     q = models.CharField(max_length=200)
     fq0 = models.CharField(max_length=200)
     fq1 = models.CharField(max_length=200)
@@ -38,7 +40,4 @@ class Moore(models.Model):
     gq1 = models.CharField(max_length=200)
     def __str__(self):
         return self.q
-    class Meta:
-        constraints=[
-            models.UniqueConstraint(fields=['q'], name='unique_name_Moore_State')
-        ]
+
