@@ -97,7 +97,6 @@ def minimize_Moore(states):
         )
         #Se verifica si hubo algun cambio en las particiones   
         if partition ==next_partition:
-            print(next_partition)
             #Como no se encontro ningun cambio se sale del loop
             break
         #como se encontro algun cambio, se asiga la partición nueva a la partición actual
@@ -198,6 +197,23 @@ def render_Mealy(request):
         listfq1 = request.POST.getlist('form-fq1')
         listgq0 = request.POST.getlist('form-gq0')
         listgq1 = request.POST.getlist('form-gq1')
+        #manego de excepciones
+        if not listq:
+            raise Exception("la maquina debe tener por lo menos un estado")
+
+        try:
+            machine = Machine_name_Moore.objects.get(name=name)
+            raise Exception("Ya existe una maquina con este nombre")
+        except Machine_name_Moore.DoesNotExist:
+            pass
+        if (len(listq) != len(set(listq))):
+            raise Exception("No pueden haber estados duplicados")
+        for h in listgq0:
+            if h != '0' not in ['0', '1']:
+                raise Exception("Solo se permiten las entradas 0 y 1")
+        for h in listgq1:
+            if h != '0' not in ['0', '1']:
+                raise Exception("Solo se permiten las entradas 0 y 1")
 
         machine = Machine_name_Mealy.objects.create(name=name)
         states={}
@@ -208,11 +224,11 @@ def render_Mealy(request):
             )
             states[q]=[listfq0[i],listfq1[i],listgq0[i],listgq1[i]]
             i+=1
+            
         #se reduce la maquina
         reachable_states = reduce(listq[0],states)
         #se crea de nuevo el diccionario pero con los estados reducidos
         states = {q: states[q] for q in reachable_states if q in states}
-        #print(states)
         states=minimize_Mealy(states)
         
         name="Mini_"+name
@@ -229,7 +245,7 @@ def minimize_Mealy(states):
      #Se inicia un while que funcionara hasta que no se encuentre cambio en las particiones
     while True:
         #Se llama al metodo new_partition con la maquina de estados y las particiones actuales para encontrar una nueva partición
-        print(partition)
+  
         next_partition=new_partition(
             states,partition
         )

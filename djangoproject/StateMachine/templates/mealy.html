@@ -35,31 +35,31 @@
               </tr>
         </tbody>
       </table>
-      <button type="button" id="add-row">Add Row</button>
-      <button type="submit">Save</button>
+      <button type="button" id="add-row">Añadir estado</button>
+      <button type="submit">Salvar</button>
 </form>
 <script>
     document.getElementById('add-row').addEventListener('click', function() {
   const formCountInput = document.getElementById('id_form');
   const formCount = parseInt(formCountInput.value);
   const newFormHtml = `
-<tr>
-  <td>
-    <p> <label for="id_form-q"></label> <input type="text" name="form-q"maxlength="200" id="id_form-q" required unique></p>
-  </td>
-  <td>
-    <p><label for="id_form-fq0"></label><input type="text" name="form-fq0" maxlength="200" id="id_form-fq0" required></p>
-  </td>
-  <td>
-    <p><label for="id_form-gq0"></label><input type="text" name="form-gq0" maxlength="200" id="id_form-gq0" required></p>
-  </td>
-  <td>
-    <p><label for="id_form-fq1"></label><input type="text" name="form-fq1" maxlength="200" id="id_form-fq1" required></p>
-  </td>
-  <td>
-    <p><label for="id_form-gq1"></label><input type="text" name="form-gq1" maxlength="200" id="id_form-gq1" required></p>
-  </td>
-</tr>
+            <tr>
+                <td>
+                  <p> <label for="id_form-q"></label> <input type="text" name="form-q"maxlength="200" id="id_form-q" required unique></p>
+                </td>
+                <td>
+                  <p><label for="id_form-fq0"></label><input type="text" name="form-fq0" maxlength="200" id="id_form-fq0" required></p>
+                </td>
+                <td>
+                  <p><label for="id_form-fq1"></label><input type="text" name="form-fq1" maxlength="200" id="id_form-fq1" required></p>
+                </td>
+                <td>
+                    <p><label for="id_form-gq0"></label><input type="text" name="form-gq0" maxlength="200" id="id_form-gq0" required></p>
+                  </td>
+                <td>
+                  <p><label for="id_form-gq1"></label><input type="text" name="form-gq1" maxlength="200" id="id_form-gq1" required></p>
+                </td>
+            </tr>
 
   `.replace(/__prefix__/g, formCount);
   const tbody = document.querySelector('tbody');
