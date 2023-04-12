@@ -285,7 +285,19 @@ def create_new_Mealy(states,name):
     machine=Machine_name_Mealy.objects.create(name=name)
     for key in states:
         #se crean los datos en la base de datos
-        Mealy.objects.create(name=machine,q=key,fq0=states[key][0],gq0=states[key][1],fq1=states[key][2],gq1=states[key][3])
+        Mealy.objects.create(name=machine,q=key,fq0=states[key][0],fq1=states[key][1],gq0=states[key][2],gq1=states[key][3])
 
-
+#ver maquinas
+def render_machines(request):
+    mealy = Mealy.objects.all()
+    moore = Moore.objects.all()
+    mealy_title= Machine_name_Mealy.objects.all()
+    moore_title=Machine_name_Moore.objects.all()
+    #Le mandamos los datos que vamos a usar en jinja
+    return render(request, 'machines.html',{
+        'mealy': mealy, 
+        'moore':moore,
+        'mealy_title':mealy_title,
+        'moore_title':moore_title
+        })
 

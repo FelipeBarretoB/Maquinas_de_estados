@@ -1,0 +1,64 @@
+{% extends 'layouts/base1.html' %}
+{# esto es un comentario de jinja, lo de arriba es basicamente un heredar del documento base1.html#}
+{% block content%}
+<h1>Maquinas que has creado</h1>
+    <h2>Maquinas de moore</h2>
+    {#loop de jinja, lo mismo que los de python#}
+    {% for name in moore_title %}
+    {# se usa doble llaves para llamar a un dato #}
+    <h1>{{ name.name }}</h1>
+    <table>
+    <thead>
+        <tr>
+        <th>q</th>
+        <th>fq0</th>
+        <th>fq1</th>
+        <th>hq</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in moore %}
+        {# if de jinja #}
+        {% if name.id == state.name_id %}
+            <tr>
+                <td>{{ state.q }}</td>
+                <td>{{ state.fq0 }}</td>
+                <td>{{ state.fq1 }}</td>
+                <td>{{ state.hq }}</td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+    </table>
+    {% endfor %}
+    {# se usan endfor y endif para cerrar los for loops y los if#}
+    <h2>Maquinas de Mealy</h2>
+    {% for name in mealy_title %}
+    <h1>{{ name.name }}</h1>
+    <table>
+    <thead>
+        <tr>
+        <th>q</th>
+        <th>fq0</th>
+        <th>fq1</th>
+        <th>gq0</th>
+        <th>gq1</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in mealy %}
+        {% if name.id == state.name_id %}
+            <tr>
+                <td>{{ state.q }}</td>
+                <td>{{ state.fq0 }}</td>
+                <td>{{ state.fq1 }}</td>
+                <td>{{ state.gq0 }}</td>
+                <td>{{ state.gq1 }}</td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+    </table>
+    {% endfor %}
+{% endblock %}
+
