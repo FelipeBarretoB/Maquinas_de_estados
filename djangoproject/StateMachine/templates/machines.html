@@ -1,7 +1,7 @@
 {% extends 'layouts/base1.html' %}
 {# esto es un comentario de jinja, lo de arriba es basicamente un heredar del documento base1.html#}
 {% block content%}
-<h1>Maquinas que has creado</h1>
+<h1 class="title">Maquinas que has creado</h1>
     <h2>Maquinas de moore</h2>
     {#loop de jinja, lo mismo que los de python#}
     {% for name in moore_title %}
@@ -32,7 +32,7 @@
     </table>
     {% endfor %}
     {# se usan endfor y endif para cerrar los for loops y los if#}
-    <h2>Maquinas de Mealy</h2>
+    <h1 class="title">Maquinas de Mealy</h1>
     {% for name in mealy_title %}
     <h1>{{ name.name }}</h1>
     <table>

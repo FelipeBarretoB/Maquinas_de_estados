@@ -44,12 +44,14 @@ def render_Moore(request):
         #se crea de nuevo el diccionario pero con los estados reducidos
         states = {q: states[q] for q in reachable_states if q in states}
         states=minimize_Moore(states)
+        #le damos un nuevo nombre a la maquina resultante
         name="mini_"+name
         create_new_Moore(states,name)
         
     return render(request, 'moore.html', )
 
 
+#Se usa para borrar los estados a los cuales el estado inicial no puede llegar
 def reduce(q, states):
     #q se añade a la lista de estados a los que se puede llegar, al ser el estado inicial
     reachable_states = set([q])
